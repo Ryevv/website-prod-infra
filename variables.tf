@@ -8,12 +8,6 @@ variable "ami_id" {
   type        = string
 }
 
-
-variable "aws_region" {
-  description = "Região da AWS onde os recursos serão criados"
-  type        = string
-}
-
 variable "key_name" {
   description = "Nome do key pair para acesso SSH"
   type        = string
