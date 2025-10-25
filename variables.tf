@@ -1,19 +1,34 @@
-variable "ami_id" {
-  description = "ID da AMI a ser usada"
+variable "ALLOWED_SSH_IP" {
+  description = "IP liberado para SSH "
   type        = string
 }
 
-variable "key_name" {
-  description = "Nome da key pair"
+variable "AMI_ID" {
+  description = "ID da AMI a ser usada na EC2"
   type        = string
 }
 
-variable "vpc_id" {
-  description = "ID da VPC"
+variable "AWS_ACCESS_KEY_ID" {
+  description = "Access Key da AWS"
   type        = string
 }
 
-variable "allowed_ssh_ip" {
-  description = "IP liberado para SSH"
+variable "AWS_REGION" {
+  description = "Região da AWS onde os recursos serão criados"
+  type        = string
+}
+
+variable "AWS_SECRET_ACCESS_KEY" {
+  description = "Secret Key da AWS"
+  type        = string
+}
+
+variable "KEY_NAME" {
+  description = "Nome do key pair para acesso SSH"
+  type        = string
+}
+
+variable "VPC_ID" {
+  description = "ID da VPC onde o security group será criado"
   type        = string
 }
