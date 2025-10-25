@@ -8,7 +8,7 @@ variable "ami_id" {
   type        = string
 }
 
-variable "aws_access_key_id" {
+variable "AWS_ACCESS_KEY_ID" {
   description = "Access Key da AWS"
   type        = string
 }
@@ -18,7 +18,7 @@ variable "aws_region" {
   type        = string
 }
 
-variable "aws_secret_access_key" {
+variable "AWS_SECRET_ACCESS_KEY" {
   description = "Secret Key da AWS"
   type        = string
 }
