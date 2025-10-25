@@ -18,7 +18,3 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "instance_type" {
-  description = "Tipo da instância EC2 (ex.: t2.micro, t3.medium)"
-  type        = string
-}
