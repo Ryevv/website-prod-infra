@@ -1,0 +1,75 @@
+name: Terraform CI/CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Apply Terraform changes?'
+        required: true
+        default: 'false'
+      plan_destroy:
+        description: 'Run Terraform plan for destroy?'
+        required: true
+        default: 'false'
+      destroy:
+        description: 'Run Terraform destroy?'
+        required: true
+        default: 'false'
+
+permissions:
+  id-token: write       
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+
+    env:
+      # Secrets AWS 
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+
+      # Variáveis do Terraform
+      TF_VAR_ami_id: ${{ secrets.AMI_ID }}
+      TF_VAR_key_name: ${{ secrets.KEY_NAME }}
+      TF_VAR_vpc_id: ${{ secrets.VPC_ID }}
+      TF_VAR_allowed_ssh_ip: ${{ secrets.ALLOWED_SSH_IP }}
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v5
+
+      - name: Configurar credenciais AWS
+        uses: aws-actions/configure-aws-credentials@v4.3.1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v3.1.2
+        with:
+          terraform_version: 1.9.7  
+
+      - name: Inicializar Terraform
+        run: terraform init
+
+      - name: Validar configuração
+        run: terraform validate
+
+      - name: Plano de execução
+        run: terraform plan -out=tfplan
+
+      - name: Aplicar alterações
+        if: github.event.inputs.apply == 'true'
+        run: terraform apply -auto-approve tfplan
+
+      - name: Plano para destruição
+        if: github.event.inputs.plan_destroy == 'true'
+        run: terraform plan -destroy -out=tfplandestroy
+
+      - name: Destruir infraestrutura
+        if: github.event.inputs.destroy == 'true'
+        run: terraform apply -destroy -auto-approve tfplandestroy
