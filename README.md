@@ -42,10 +42,10 @@ Valores sensíveis devem ser configurados via **GitHub Secrets** ou arquivo `ter
 | `AWS_ACCESS_KEY_ID` | Chave de acesso AWS |
 | `AWS_SECRET_ACCESS_KEY` | Secret Key AWS |
 | `AWS_REGION` | Região AWS |
-| `TF_AMI_ID` | ID da AMI a ser usada |
-| `TF_KEY_NAME` | Nome da keypair EC2 |
-| `TF_VPC_ID` | VPC onde os recursos serão criados |
-| `TF_ALLOWED_SSH_IP` | IP permitido para SSH (ex: `177.121.114.159/32`) |
+| `AMI_ID` | ID da AMI a ser usada |
+| `KEY_NAME` | Nome da keypair EC2 |
+| `VPC_ID` | VPC onde os recursos serão criados |
+| `ALLOWED_SSH_IP` | IP permitido para SSH (ex: `177.121.114.159/32`) |
 ```  
 
 ---
@@ -81,6 +81,7 @@ Gerar plano de destruição (plan_destroy)
 Destruir a infraestrutura (destroy)
 
 Você pode disparar manualmente pelo GitHub Actions, usando os inputs do workflow.
+
 
 
 
