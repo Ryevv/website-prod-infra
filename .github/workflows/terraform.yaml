@@ -36,6 +36,7 @@ jobs:
       TF_VAR_key_name: ${{ secrets.KEY_NAME }}
       TF_VAR_vpc_id: ${{ secrets.VPC_ID }}
       TF_VAR_allowed_ssh_ip: ${{ secrets.ALLOWED_SSH_IP }}
+      TF_VAR_instance_type: ${{ secrets.INSTANCE_TYPE }}
 
     steps:
       - name: Checkout código
