@@ -11,7 +11,6 @@ Inclui configuração de **EC2**, **Security Groups**, **IAM Roles** e integraç
 - **AWS** - EC2, VPC, Security Groups, IAM
 - **GitHub Actions** - Automação de CI/CD
 - **S3** - Armazenamento do Terraform State
-- **DynamoDB** (opcional) - Lock do Terraform State
 
 ---
 
@@ -81,6 +80,7 @@ Gerar plano de destruição (plan_destroy)
 Destruir a infraestrutura (destroy)
 
 Você pode disparar manualmente pelo GitHub Actions, usando os inputs do workflow.
+
 
 
 
