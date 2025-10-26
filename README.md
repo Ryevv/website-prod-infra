@@ -20,6 +20,7 @@ Inclui configuração de **EC2**, **Security Groups**, **IAM Roles** e integraç
 ├── backend.tf # Configuração do backend S3
 ├── ec2.tf # Recursos EC2, Security Groups e IAM Roles
 ├── user_data.sh # Script de inicialização da instância
+├── variables.tf # Declaração de variáveis usadas no projeto
 ├── .github/
 │ └── workflows/
 │ └── terraform.yml # Workflow de CI/CD
@@ -80,6 +81,7 @@ Gerar plano de destruição (plan_destroy)
 Destruir a infraestrutura (destroy)
 
 Você pode disparar manualmente pelo GitHub Actions, usando os inputs do workflow.
+
 
 
 
